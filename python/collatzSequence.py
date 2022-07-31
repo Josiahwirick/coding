@@ -2,6 +2,7 @@ import time
 
 
 def collatz(): # The function that does the math
+    counter = 0
     print('Input a number:')
     good = True
     while good:
@@ -19,12 +20,14 @@ def collatz(): # The function that does the math
             if (number % 2) == 0: # Check if the number variable is even
                 number = (number//2)
                 print(number)
+                counter = counter + 1
                 time.sleep(0.3)
     
             elif (number % 2) == 1: # Check if number variable is odd
                 number = (number*3 + 1)
                 print(number)
+                counter = counter + 1
                 time.sleep(0.3)
             
-    print('Finished')
+    print('Finished in ' + str(counter) + ' calculations')
 collatz()
