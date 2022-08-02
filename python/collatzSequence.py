@@ -8,6 +8,9 @@ def collatz(): # The function that does the math
     while good:
         try: # Check if input works as an integer
             number = int(input())
+            if number <= 0:
+                print('Number cannot be less than 1, enter another number:')
+                continue
             print(number)
             int(number)
             good = False
