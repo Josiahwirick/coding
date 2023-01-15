@@ -28,34 +28,27 @@ while True:
         print("You don't have enough money to make that bet.")
         continue
     
-    # Spin the reels
-    """ Commented out the eyesore of a complicated setup to generate the grid for something more elegant
-    grid1 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid2 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid3 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid4 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid5 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid6 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid7 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid8 = random.choice(list('AAAAABBBBCCCDDE'))
-    grid9 = random.choice(list('AAAAABBBBCCCDDE'))"""
-    
+    # Spin the reels  
     grid = [[random.choice(list('AAAAABBBBCCCDDE')) for _ in range(3)] for _ in range(3)]
     print("Spinning reels...")
     print(grid[0])
     print(grid[1])
     print(grid[2])
     
+    
+    # Initialize winning letter to lowest value
+    winning_letter = 'A'
+    
     # Check for a winning combination
     win = False
     for i in range(3):
         if (grid[i][0] == grid[i][1] == grid[i][2]) or (grid[0][i] == grid[1][i] == grid[2][i]):
             win = True
-            winning_letter = grid[i][0]
+            winning_letter = max(winning_letter, grid[i][0])
             break
     if grid[0][0] == grid[1][1] == grid[2][2] or grid[2][0] == grid[1][1] == grid[0][2]:
         win = True
-        winning_letter = grid[1][1]
+        winning_letter = max(winning_letter, grid[1][1])
     if win:
         payout = payouts[winning_letter] * bet
         money += payout
@@ -68,3 +61,4 @@ while True:
     if money <= 0:
         print("You have run out of money. Game over.")
         break
+
